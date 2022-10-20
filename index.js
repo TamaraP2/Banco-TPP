@@ -286,11 +286,11 @@ function calculoSaldo () {
 
     for (let i = 0; i < contas[indexUsuarioAtual].movimentacoes.length; i++) { 
         saldoUsuario += contas[indexUsuarioAtual].movimentacoes[i].valor;
-    }
-  
-    saldoUsuario = new Intl.NumberFormat('pt-BR', {style: "currency", currency: "BRL"}).format(saldoUsuario).replace('-', ''); 
+    } 
+
+    let saldoUsuarioString = new Intl.NumberFormat('pt-BR', {style: "currency", currency: "BRL"}).format(saldoUsuario).replace('-', ''); 
    
-    document.querySelectorAll(".saldo").forEach(element => element.innerHTML = `<div class="saldo">SALDO ATUAL: <span class="saldo-atual">${saldoUsuario}</span></div>`);        
+    document.querySelectorAll(".saldo").forEach(element => element.innerHTML = `<div class="saldo">SALDO ATUAL: <span class="saldo-atual">${saldoUsuarioString}</span></div>`);        
 }
 
 
@@ -393,8 +393,7 @@ document.querySelector(".transferir-btn").addEventListener("click", function(e) 
         
         let idUsuarioRecebedorTransferencia = document.getElementById("transferencias-usuario").value.at(-1);
         let indexUsuarioRecebedorTransferencia = contas.findIndex(conta => conta.id === Number(idUsuarioRecebedorTransferencia));  
-        let valorTransferido = Number(document.getElementById("transferencias-valor").value);
-
+        let valorTransferido = Number(document.getElementById("transferencias-valor").value); 
 
         let dataAtual = new Date().toLocaleDateString();
         let horaAtual = new Date().toLocaleTimeString(navigator.language, { hour12: false, hour: "numeric", minute: "numeric"});
